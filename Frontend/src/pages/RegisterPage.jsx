@@ -109,6 +109,7 @@ const RegisterPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="patient@example.com"
+                autoComplete="off"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -121,6 +122,7 @@ const RegisterPage = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
+                autoComplete="new-password"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
