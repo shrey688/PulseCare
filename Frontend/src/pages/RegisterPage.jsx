@@ -138,7 +138,7 @@ const RegisterPage = () => {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder="Enter your full name"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -151,7 +151,7 @@ const RegisterPage = () => {
                 required
                 value={formData.age}
                 onChange={handleChange}
-                placeholder="30"
+                placeholder="Enter your age"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -199,7 +199,7 @@ const RegisterPage = () => {
                 required
                 value={formData.contactNumber}
                 onChange={handleChange}
-                placeholder="9876543210"
+                placeholder="Enter 10-digit mobile number"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -212,7 +212,7 @@ const RegisterPage = () => {
                 required
                 value={formData.emergencyContact}
                 onChange={handleChange}
-                placeholder="9876543211"
+                placeholder="Enter emergency contact number"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -226,7 +226,7 @@ const RegisterPage = () => {
               required
               value={formData.address}
               onChange={handleChange}
-              placeholder="123 Main Street, City"
+              placeholder="Enter your residential address"
               className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
