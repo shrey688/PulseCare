@@ -164,29 +164,59 @@ const DoctorDashboard = () => {
       if (res.data && res.data.length > 0) {
         setHistoryRecords(res.data);
       } else {
-        setHistoryRecords([
-          {
-            id: 1,
-            diagnosis: 'Stage 1 Essential Hypertension',
-            symptoms: 'Occasional morning headaches, elevated BP',
-            prescription: '1. Tab Amlodipine 5mg (1-0-0)\n2. Tab Telmisartan 40mg (0-0-1)',
-            doctorNotes: 'Dietary sodium restriction advised. Review in 14 days.',
-            createdAt: new Date().toISOString()
-          }
-        ]);
+        throw new Error("No backend records");
       }
       setShowHistoryModal(true);
     } catch (err) {
-      setHistoryRecords([
-        {
+      let mockHistory = [];
+      const name = patientName || '';
+      if (name.includes('Rajesh')) {
+        mockHistory = [{
           id: 1,
           diagnosis: 'Stage 1 Essential Hypertension',
-          symptoms: 'Occasional morning headaches, elevated BP',
-          prescription: '1. Tab Amlodipine 5mg (1-0-0)\n2. Tab Telmisartan 40mg (0-0-1)',
-          doctorNotes: 'Dietary sodium restriction advised. Review in 14 days.',
+          symptoms: 'Occasional morning headaches, elevated blood pressure (142/92 mmHg)',
+          prescription: '1. Tab Amlodipine 5mg (1-0-0) after breakfast\n2. Tab Telmisartan 40mg (0-0-1) after dinner',
+          doctorNotes: 'Dietary sodium restriction advised. Review BP in 14 days.',
           createdAt: new Date().toISOString()
-        }
-      ]);
+        }];
+      } else if (name.includes('Priya')) {
+        mockHistory = [{
+          id: 2,
+          diagnosis: 'Common Migraine',
+          symptoms: 'Throbbing unilateral headache, nausea, photophobia',
+          prescription: '1. Tab Sumatriptan 50mg (on-onset) for acute headache relief\n2. Tab Propranolol 40mg (1-0-1) as prophylaxis',
+          doctorNotes: 'Advised keeping a migraine symptom diary. Limit caffeine consumption.',
+          createdAt: new Date().toISOString()
+        }];
+      } else if (name.includes('Amitabh')) {
+        mockHistory = [{
+          id: 3,
+          diagnosis: 'Moderate Allergic Asthma',
+          symptoms: 'Exertional dyspnea, dry nocturnal cough, wheezing',
+          prescription: '1. Budesonide / Formoterol Inhaler (160mcg/4.5mcg) - 2 puffs twice daily\n2. Tab Montelukast 10mg (0-0-1) at night',
+          doctorNotes: 'Use inhaler correctly; spacer advised. Keep rescue inhaler close.',
+          createdAt: new Date().toISOString()
+        }];
+      } else if (name.includes('Ananya')) {
+        mockHistory = [{
+          id: 4,
+          diagnosis: 'Allergic Rhinitis',
+          symptoms: 'Paroxysmal sneezing, clear rhinorrhea, itchy eyes',
+          prescription: '1. Tab Cetirizine 10mg (0-0-1) before bedtime\n2. Fluticasone Furoate nasal spray (1 spray/nostril once daily)',
+          doctorNotes: 'Avoid exposure to pollen and dust. Clean AC filters regularly.',
+          createdAt: new Date().toISOString()
+        }];
+      } else {
+        mockHistory = [{
+          id: 5,
+          diagnosis: 'General Medical Consultation',
+          prescription: '1. Cap Multivitamin (1-0-0) after breakfast',
+          symptoms: 'Mild fatigue',
+          doctorNotes: 'Stay hydrated, regular sleep cycles.',
+          createdAt: new Date().toISOString()
+        }];
+      }
+      setHistoryRecords(mockHistory);
       setShowHistoryModal(true);
     }
   };
