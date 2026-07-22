@@ -78,7 +78,7 @@ const RegisterPage = () => {
         </div>
 
         <div className="text-center space-y-1">
-          <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">Patient Registration</h2>
+          <h2 className="text-2xl font-extrabold text-gray-900 dark:text-white">Registration</h2>
           <p className="text-xs text-gray-500">Create a secure medical account to book appointments and view reports</p>
         </div>
 
