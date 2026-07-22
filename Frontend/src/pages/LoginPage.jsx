@@ -131,7 +131,7 @@ const LoginPage = () => {
         )}
 
         {/* Form */}
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleLogin} autoComplete="off" className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
             <div className="relative">
@@ -142,6 +142,7 @@ const LoginPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@hospital.com"
+                autoComplete="off"
                 className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none"
               />
             </div>
@@ -166,6 +167,7 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
+                autoComplete="new-password"
                 className="w-full pl-10 pr-10 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none"
               />
               <button
