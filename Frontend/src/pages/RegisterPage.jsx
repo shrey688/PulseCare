@@ -239,7 +239,7 @@ const RegisterPage = () => {
                 name="insuranceDetails"
                 value={formData.insuranceDetails}
                 onChange={handleChange}
-                placeholder="e.g. Star Health #12345"
+                placeholder="Enter policy name or number"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>
@@ -251,7 +251,7 @@ const RegisterPage = () => {
                 name="medicalHistory"
                 value={formData.medicalHistory}
                 onChange={handleChange}
-                placeholder="e.g. Diabetes, Asthma"
+                placeholder="Enter past medical illnesses"
                 className="w-full px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 border-none text-sm outline-none focus:ring-2 focus:ring-primary-500"
               />
             </div>

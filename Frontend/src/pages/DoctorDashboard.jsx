@@ -110,7 +110,7 @@ const DoctorDashboard = () => {
 
   const handleUpdateStatus = async (appointmentId, status) => {
     try {
-      await API.patch(`/doctor/appointments/${appointmentId}/status`, { status }).catch(() => {});
+      await API.patch(`/doctor/appointments/${appointmentId}/status`, { status }).catch(() => { });
       setAppointments(prev => prev.map(a => a.id === appointmentId ? { ...a, status } : a));
       alert(`Appointment #${appointmentId} status updated to ${status}`);
     } catch (err) {
@@ -139,7 +139,7 @@ const DoctorDashboard = () => {
     try {
       await API.post('/doctor/records', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
-      }).catch(() => {});
+      }).catch(() => { });
 
       const pat = patients.find(p => String(p.id) === String(selectedPatientId));
 
@@ -164,59 +164,29 @@ const DoctorDashboard = () => {
       if (res.data && res.data.length > 0) {
         setHistoryRecords(res.data);
       } else {
-        throw new Error("No backend records");
+        setHistoryRecords([
+          {
+            id: 1,
+            diagnosis: 'Stage 1 Essential Hypertension',
+            symptoms: 'Occasional morning headaches, elevated BP',
+            prescription: '1. Tab Amlodipine 5mg (1-0-0)\n2. Tab Telmisartan 40mg (0-0-1)',
+            doctorNotes: 'Dietary sodium restriction advised. Review in 14 days.',
+            createdAt: new Date().toISOString()
+          }
+        ]);
       }
       setShowHistoryModal(true);
     } catch (err) {
-      let mockHistory = [];
-      const name = patientName || '';
-      if (name.includes('Rajesh')) {
-        mockHistory = [{
+      setHistoryRecords([
+        {
           id: 1,
           diagnosis: 'Stage 1 Essential Hypertension',
-          symptoms: 'Occasional morning headaches, elevated blood pressure (142/92 mmHg)',
-          prescription: '1. Tab Amlodipine 5mg (1-0-0) after breakfast\n2. Tab Telmisartan 40mg (0-0-1) after dinner',
-          doctorNotes: 'Dietary sodium restriction advised. Review BP in 14 days.',
+          symptoms: 'Occasional morning headaches, elevated BP',
+          prescription: '1. Tab Amlodipine 5mg (1-0-0)\n2. Tab Telmisartan 40mg (0-0-1)',
+          doctorNotes: 'Dietary sodium restriction advised. Review in 14 days.',
           createdAt: new Date().toISOString()
-        }];
-      } else if (name.includes('Priya')) {
-        mockHistory = [{
-          id: 2,
-          diagnosis: 'Common Migraine',
-          symptoms: 'Throbbing unilateral headache, nausea, photophobia',
-          prescription: '1. Tab Sumatriptan 50mg (on-onset) for acute headache relief\n2. Tab Propranolol 40mg (1-0-1) as prophylaxis',
-          doctorNotes: 'Advised keeping a migraine symptom diary. Limit caffeine consumption.',
-          createdAt: new Date().toISOString()
-        }];
-      } else if (name.includes('Amitabh')) {
-        mockHistory = [{
-          id: 3,
-          diagnosis: 'Moderate Allergic Asthma',
-          symptoms: 'Exertional dyspnea, dry nocturnal cough, wheezing',
-          prescription: '1. Budesonide / Formoterol Inhaler (160mcg/4.5mcg) - 2 puffs twice daily\n2. Tab Montelukast 10mg (0-0-1) at night',
-          doctorNotes: 'Use inhaler correctly; spacer advised. Keep rescue inhaler close.',
-          createdAt: new Date().toISOString()
-        }];
-      } else if (name.includes('Ananya')) {
-        mockHistory = [{
-          id: 4,
-          diagnosis: 'Allergic Rhinitis',
-          symptoms: 'Paroxysmal sneezing, clear rhinorrhea, itchy eyes',
-          prescription: '1. Tab Cetirizine 10mg (0-0-1) before bedtime\n2. Fluticasone Furoate nasal spray (1 spray/nostril once daily)',
-          doctorNotes: 'Avoid exposure to pollen and dust. Clean AC filters regularly.',
-          createdAt: new Date().toISOString()
-        }];
-      } else {
-        mockHistory = [{
-          id: 5,
-          diagnosis: 'General Medical Consultation',
-          prescription: '1. Cap Multivitamin (1-0-0) after breakfast',
-          symptoms: 'Mild fatigue',
-          doctorNotes: 'Stay hydrated, regular sleep cycles.',
-          createdAt: new Date().toISOString()
-        }];
-      }
-      setHistoryRecords(mockHistory);
+        }
+      ]);
       setShowHistoryModal(true);
     }
   };
@@ -228,13 +198,13 @@ const DoctorDashboard = () => {
         name: profileForm.name,
         mobile: profileForm.mobile,
         availability: profileForm.availability
-      }).catch(() => {});
+      }).catch(() => { });
 
       if (profileForm.currentPassword && profileForm.newPassword) {
         await API.put('/profile/password', {
           currentPassword: profileForm.currentPassword,
           newPassword: profileForm.newPassword
-        }).catch(() => {});
+        }).catch(() => { });
       }
 
       setProfileSaved(true);
@@ -268,7 +238,7 @@ const DoctorDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-dark-text flex font-sans">
-      
+
       {/* Sidebar Navigation */}
       <Sidebar
         isOpen={sidebarOpen}
@@ -299,7 +269,7 @@ const DoctorDashboard = () => {
                  ========================================== */}
               {(activeTab === 'dashboard' || activeTab === 'appointments') && (
                 <div className="space-y-8 animate-fade-in">
-                  
+
                   {/* Doctor Banner */}
                   <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-blue-600 via-indigo-600 to-teal-600 text-white shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
@@ -393,16 +363,15 @@ const DoctorDashboard = () => {
                                   {app.patient?.name || 'Patient'}
                                 </td>
                                 <td className="p-4 text-xs font-mono">
-                                  {app.appointmentDate}<br/><span className="text-primary-500 font-semibold">{app.timeSlot}</span>
+                                  {app.appointmentDate}<br /><span className="text-primary-500 font-semibold">{app.timeSlot}</span>
                                 </td>
                                 <td className="p-4 text-xs font-medium text-gray-500">{app.department?.name || 'General'}</td>
                                 <td className="p-4 text-xs text-gray-600 dark:text-gray-400 max-w-xs truncate">{app.reason || 'General Health Checkup'}</td>
                                 <td className="p-4">
-                                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                                    app.status === 'APPROVED' ? 'bg-emerald-500/10 text-emerald-600' :
-                                    app.status === 'COMPLETED' ? 'bg-blue-500/10 text-blue-600' :
-                                    app.status === 'CANCELLED' ? 'bg-red-500/10 text-red-600' : 'bg-amber-500/10 text-amber-600'
-                                  }`}>
+                                  <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${app.status === 'APPROVED' ? 'bg-emerald-500/10 text-emerald-600' :
+                                      app.status === 'COMPLETED' ? 'bg-blue-500/10 text-blue-600' :
+                                        app.status === 'CANCELLED' ? 'bg-red-500/10 text-red-600' : 'bg-amber-500/10 text-amber-600'
+                                    }`}>
                                     {app.status}
                                   </span>
                                 </td>
@@ -587,15 +556,15 @@ const DoctorDashboard = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Doctor Full Name</label>
-                        <input type="text" value={profileForm.name} onChange={e => setProfileForm({...profileForm, name: e.target.value})} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
+                        <input type="text" value={profileForm.name} onChange={e => setProfileForm({ ...profileForm, name: e.target.value })} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
                       </div>
                       <div>
                         <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Mobile Contact</label>
-                        <input type="text" value={profileForm.mobile} onChange={e => setProfileForm({...profileForm, mobile: e.target.value})} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
+                        <input type="text" value={profileForm.mobile} onChange={e => setProfileForm({ ...profileForm, mobile: e.target.value })} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
                       </div>
                       <div className="sm:col-span-2">
                         <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Weekly Availability Hours</label>
-                        <input type="text" value={profileForm.availability} onChange={e => setProfileForm({...profileForm, availability: e.target.value})} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" placeholder="e.g. Mon-Fri 09:00-17:00" />
+                        <input type="text" value={profileForm.availability} onChange={e => setProfileForm({ ...profileForm, availability: e.target.value })} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" placeholder="e.g. Mon-Fri 09:00-17:00" />
                       </div>
                     </div>
 
@@ -604,11 +573,11 @@ const DoctorDashboard = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="text-xs font-bold text-gray-700 dark:text-gray-300">Current Password</label>
-                          <input type="password" placeholder="••••••••" value={profileForm.currentPassword} onChange={e => setProfileForm({...profileForm, currentPassword: e.target.value})} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
+                          <input type="password" placeholder="••••••••" value={profileForm.currentPassword} onChange={e => setProfileForm({ ...profileForm, currentPassword: e.target.value })} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
                         </div>
                         <div>
                           <label className="text-xs font-bold text-gray-700 dark:text-gray-300">New Password</label>
-                          <input type="password" placeholder="••••••••" value={profileForm.newPassword} onChange={e => setProfileForm({...profileForm, newPassword: e.target.value})} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
+                          <input type="password" placeholder="••••••••" value={profileForm.newPassword} onChange={e => setProfileForm({ ...profileForm, newPassword: e.target.value })} className="w-full mt-1 px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-sm outline-none" />
                         </div>
                       </div>
                     </div>
