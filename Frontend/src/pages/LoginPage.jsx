@@ -93,31 +93,31 @@ const LoginPage = () => {
 
         {/* Quick Demo Credentials Buttons */}
         <div className="space-y-2 pt-2">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 text-center">Quick Demo Login</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 text-center">Quick Login</p>
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => handleQuickLogin('admin@hospital.com', 'admin123')}
               className="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-primary-500 hover:text-white transition-colors"
             >
-              Admin Demo
+              Admin
             </button>
             <button
               onClick={() => handleQuickLogin('doctor@hospital.com', 'admin123')}
               className="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-primary-500 hover:text-white transition-colors"
             >
-              Doctor Demo
+              Doctor
             </button>
             <button
               onClick={() => handleQuickLogin('receptionist@hospital.com', 'admin123')}
               className="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-primary-500 hover:text-white transition-colors"
             >
-              Receptionist Demo
+              Receptionist
             </button>
             <button
               onClick={() => handleQuickLogin('patient@hospital.com', 'admin123')}
               className="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium hover:bg-primary-500 hover:text-white transition-colors"
             >
-              Patient Demo
+              Patient
             </button>
           </div>
         </div>
